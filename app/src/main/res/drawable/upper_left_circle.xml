@@ -5,8 +5,8 @@
     <solid
         android:color="@color/green"/>
     <size
-        android:width="160dp"
-        android:height="160dp"/>
+        android:width="@dimen/button_width"
+        android:height="@dimen/button_height"/>
     <corners
         android:topLeftRadius="@dimen/big_circle_diameter"
         />
