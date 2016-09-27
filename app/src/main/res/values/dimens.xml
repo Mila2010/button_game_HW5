@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="border_thickness">10dp</dimen>
+    <dimen name="big_circle_radius">150dp</dimen>
+    <dimen name="big_circle_diameter">300dp</dimen>
+    <dimen name="small_circle_diameter">100dp</dimen>
+    <dimen name="small_circle_radius">50dp</dimen>
+    <dimen name="ring_thickness">100dp</dimen>
+    <dimen name="button_height">140dp</dimen>
+    <dimen name="button_width">140dp</dimen>
+</resources>

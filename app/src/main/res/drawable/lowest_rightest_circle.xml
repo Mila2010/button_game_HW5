@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/lower_right_circ"
+        />
+    <item
+        android:drawable="@drawable/inner_lower_right_circ"
+        android:gravity="left|top"
+        />
+</layer-list>

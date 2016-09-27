@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="@dimen/big_circle_diameter"
+    android:layout_height="@dimen/big_circle_diameter"
+    android:layout_gravity="center"
+    android:background="@drawable/black_mem_ring">
+    <Button
+        android:id="@+id/upper_left"
+        android:layout_width="@dimen/big_circle_radius"
+        android:layout_height="@dimen/big_circle_radius"
+        android:background="@drawable/uppest_leftist_circle"/>
+    <Button
+        android:id="@+id/upper_right"
+        android:layout_width="@dimen/big_circle_radius"
+        android:layout_height="@dimen/big_circle_radius"
+        android:background="@drawable/uppest_rightest_circle"
+        android:layout_alignParentRight="true" />
+    <Button
+        android:id="@+id/lower_left"
+        android:layout_width="@dimen/big_circle_radius"
+        android:layout_height="@dimen/big_circle_radius"
+        android:background="@drawable/lowest_leftist_circle"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/lower_right"
+        android:layout_width="@dimen/big_circle_radius"
+        android:layout_height="@dimen/big_circle_radius"
+        android:background="@drawable/lowest_rightest_circle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:id="@+id/small_circle"
+        android:layout_width="@dimen/small_circle_diameter"
+        android:layout_height="@dimen/small_circle_diameter"
+        android:background="@drawable/smaller_circle"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

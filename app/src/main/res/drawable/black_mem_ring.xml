@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="ring"
+    android:innerRadius="@dimen/small_circle_radius"
+    android:thickness="@dimen/ring_thickness"
+    android:useLevel="false" >
+    <solid android:color="@color/black" />
+    <size
+        android:height="@dimen/big_circle_diameter"
+        android:width="@dimen/big_circle_diameter" />
+
+</shape>
