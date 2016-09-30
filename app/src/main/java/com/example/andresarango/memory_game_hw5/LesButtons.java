@@ -44,7 +44,7 @@ public class LesButtons {
     private View.OnClickListener clickedButton = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-            int unflashDelayTime = mDifficulty;
+            int unflashDelayTime = mDifficulty/5;
             switch (view.getId()){
                 case R.id.upper_left:
                     msNewGame.setUserMove(SimonColors.GREEN);
@@ -69,6 +69,39 @@ public class LesButtons {
             }
         }
     };
+
+    public void showButtonSequence(){
+        setAllButtonsUnclickable();
+        int time = 0;
+        for (int i = 0; i < msNewGame.gameMoveSequence.size(); i++) {
+            time = mDifficulty + time;
+            mhandler.postDelayed(flashButtonSequence(i),time);
+            time = mDifficulty/5 + time;
+            mSimulationIteration = i;
+            mhandler.postDelayed(unFlashButtonSequence(i),time);
+        }
+    }
+
+    private Runnable delayUnflashButton(final Button ourbut){
+        return new Runnable() {
+            @Override
+            public void run() {
+                switch(ourbut.getId()){
+                    case R.id.upper_right:
+                        unFlashButton(mUpperRightRedBut);
+                        break;
+                    case R.id.lower_right:
+                        unFlashButton(mLowerRightBlueBut);
+                        break;
+                    case R.id.lower_left:
+                        unFlashButton(mLowerLeftYellowBut);
+                        break;
+                    case R.id.upper_left:
+                        unFlashButton(mUpperLeftGreenBut);
+                }
+            }
+        };
+    }
 
 
     private Runnable unFlashButtonSequence(final int iteration){
@@ -122,27 +155,27 @@ public class LesButtons {
 
     private void flashButton(final Button ourBut){
                 int colothis;
-                GradientDrawable unflash;
+                GradientDrawable flash;
                 switch(ourBut.getId()){
                     case R.id.upper_right:
-                        unflash = (GradientDrawable) mUpperRightRedBut.getBackground();
+                        flash = (GradientDrawable) mUpperRightRedBut.getBackground();
                         colothis = ContextCompat.getColor(mOurActivity, R.color.flashred);
-                        unflash.setColor(colothis);
+                        flash.setColor(colothis);
                         break;
                     case R.id.lower_right:
-                        unflash = (GradientDrawable) mLowerRightBlueBut.getBackground();
+                        flash = (GradientDrawable) mLowerRightBlueBut.getBackground();
                         colothis = ContextCompat.getColor(mOurActivity, R.color.flashblue);
-                        unflash.setColor(colothis);
+                        flash.setColor(colothis);
                         break;
                     case R.id.lower_left:
-                        unflash = (GradientDrawable) mLowerLeftYellowBut.getBackground();
+                        flash = (GradientDrawable) mLowerLeftYellowBut.getBackground();
                         colothis = ContextCompat.getColor(mOurActivity, R.color.flashyellow);
-                        unflash.setColor(colothis);
+                        flash.setColor(colothis);
                         break;
                     case R.id.upper_left:
-                        unflash = (GradientDrawable) mUpperLeftGreenBut.getBackground();
+                        flash = (GradientDrawable) mUpperLeftGreenBut.getBackground();
                         colothis = ContextCompat.getColor(mOurActivity, R.color.flashgreen);
-                        unflash.setColor(colothis);
+                        flash.setColor(colothis);
                 }
     }
 
@@ -173,50 +206,18 @@ public class LesButtons {
                 }
     }
 
-    private Runnable delayUnflashButton(final Button ourbut){
-        return new Runnable() {
-            @Override
-            public void run() {
-                switch(ourbut.getId()){
-                    case R.id.upper_right:
-                        unFlashButton(mUpperRightRedBut);
-                        break;
-                    case R.id.lower_right:
-                        unFlashButton(mLowerRightBlueBut);
-                        break;
-                    case R.id.lower_left:
-                        unFlashButton(mLowerLeftYellowBut);
-                        break;
-                    case R.id.upper_left:
-                        unFlashButton(mUpperLeftGreenBut);
-                }
-            }
-        };
-    }
-
-    public void showButtonSequence(){
-        setAllButtonsUnclickable();
-        int time = 0;
-        for (int i = 0; i < msNewGame.gameMoveSequence.size(); i++) {
-            time = mDifficulty + time;
-            mhandler.postDelayed(flashButtonSequence(i),time);
-            time = mDifficulty/5 + time;
-            mSimulationIteration = i;
-            mhandler.postDelayed(unFlashButtonSequence(i),time);
-        }
-    }
 
     public void setAllButtonsClickable(){
-        mUpperLeftGreenBut.setClickable(false);
-        mUpperRightRedBut.setClickable(false);
-        mLowerLeftYellowBut.setClickable(false);
-        mLowerRightBlueBut.setClickable(false);
-    }
-
-    public void setAllButtonsUnclickable(){
         mUpperLeftGreenBut.setClickable(true);
         mUpperRightRedBut.setClickable(true);
         mLowerLeftYellowBut.setClickable(true);
         mLowerRightBlueBut.setClickable(true);
+    }
+
+    public void setAllButtonsUnclickable(){
+        mUpperLeftGreenBut.setClickable(false);
+        mUpperRightRedBut.setClickable(false);
+        mLowerLeftYellowBut.setClickable(false);
+        mLowerRightBlueBut.setClickable(false);
     }
 }

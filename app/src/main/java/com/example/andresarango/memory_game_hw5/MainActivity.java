@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> userSequence;
     public static SimonGame msNewGame;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         msNewGame = new SimonGame();
         msNewGame.addRandomColorToGameSequence();
         magicButtons.showButtonSequence();
-
 
     }
 }
