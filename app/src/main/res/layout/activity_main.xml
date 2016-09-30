@@ -34,8 +34,11 @@
         android:id="@+id/small_circle"
         android:layout_width="@dimen/small_circle_diameter"
         android:layout_height="@dimen/small_circle_diameter"
-        android:background="@drawable/smaller_circle"
+        android:background="@drawable/innercircle"
         android:layout_centerInParent="true"
-        android:elevation="8dp"/>
+        android:elevation="8dp"
+        android:text="Round\n1"
+        android:textSize="20sp"
+        android:gravity="center"/>
 
 </RelativeLayout>

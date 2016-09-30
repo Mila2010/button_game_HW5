@@ -6,9 +6,11 @@
     <dimen name="border_thickness">10dp</dimen>
     <dimen name="big_circle_radius">150dp</dimen>
     <dimen name="big_circle_diameter">300dp</dimen>
-    <dimen name="small_circle_diameter">100dp</dimen>
+    <dimen name="small_circle_diameter">150dp</dimen>
     <dimen name="small_circle_radius">50dp</dimen>
-    <dimen name="ring_thickness">100dp</dimen>
+    <dimen name="outer_ring_thickness">100dp</dimen>
     <dimen name="button_height">140dp</dimen>
     <dimen name="button_width">140dp</dimen>
+    <dimen name="inner_ring_thickness">20dp</dimen>
+    <dimen name="stroke_width">15dp</dimen>
 </resources>

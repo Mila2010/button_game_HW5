@@ -10,4 +10,5 @@
     <corners
         android:bottomRightRadius="@dimen/big_circle_diameter"
         />
+    <stroke android:width="@dimen/stroke_width"/>
 </shape>
