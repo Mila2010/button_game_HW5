@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         * If you work with textviews programmitcally, please (eventually) place the code in
         * Lesbuttons.
         *
-        * If you're looking for methods to use, I would suggest looking at th
+        * If you're looking for methods to use, I would suggest looking at the SequenceGameLogic
+        * interface
         *
         *  The following code may require two seperate activities and, if switching between
          *  activities, may need to go in onResume() maybe? THIS SUGGESTION IS POSSIBLY WRONG.
@@ -51,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
         *
         * It would be cool if they were screens that popped up on top of the activity, if not, meh.
         *
-        * P.S. the method names I referred to below are all pretty much created I think.
+        * P.S. the method names I referred to below are all pretty much created I think. 
         *
         * while(true){
         * if(isRoundStarting){
-        *   go to Activity two that
-        *   ---Code to say new round is starting
-        *   ---(MAYBE) countdown on screen 3 seconds
+        *   go to Activity two that:
+        *   ---conveys a new round is starting
+        *       ---(MAYBE) countdown on screen 3 seconds
         *   ------set small circle text to new "Round\n"+roundint
         *   ---showMoveSequence
         * }else if(wasButtonClicked){
