@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 //import static com.example.andresarango.memory_game_hw5.MainActivity.msNewGame;
 
@@ -15,6 +16,7 @@ import android.widget.Button;
  */
 
 public class LesButtons {
+    private final TextView mSmallCircleText;
     private String LAG = "BUTTONS";
     final private Button mUpperLeftGreenBut;
     final private Button mUpperRightRedBut;
@@ -22,7 +24,7 @@ public class LesButtons {
     final private Button mLowerRightBlueBut;
 
     private int mSimulationIteration;
-    private int mDifficulty = 1000;
+    private int mDifficulty;
     private int mMoveNumber;
 
     private Activity mOurActivity;
@@ -41,11 +43,14 @@ public class LesButtons {
 
         mintentRound = new Intent(mOurActivity,BetweenRoundsActivity.class);
         msNewGame = thisGame;
+        mintentRound.putExtra("nextRound", msNewGame.getRound());
 
         mGameOverAct = new Intent(mOurActivity,GameOver.class);
 
         mDifficulty = mOurActivity.getIntent().getIntExtra("difficulty",1000);
-        mOurActivity.getIntent();
+
+        mSmallCircleText = (TextView) mOurActivity.findViewById(R.id.small_circle);
+        mSmallCircleText.setText(mOurActivity.getString(R.string.round,msNewGame.getRound()));
 
         mUpperLeftGreenBut = (Button) mOurActivity.findViewById(R.id.upper_left);
         mUpperRightRedBut = (Button) mOurActivity.findViewById(R.id.upper_right);
@@ -65,7 +70,10 @@ public class LesButtons {
     *
     * When button is clicked, userMove is set in simongame, mMoveNumber is set in simongame,
     * buttonwasclicked is set in simongame to true and button is flashed.
+    * if usermove is incorrect, game is reset, user goes to gameover activity and main activity is
+    * destroyed
     *
+    * If user moves have maxed out, next round is
     
     *
     * */
@@ -104,13 +112,16 @@ public class LesButtons {
 
             if(!msNewGame.isUserMoveCorrect()){
                 msNewGame.resetGame();
+                mGameOverAct.putExtra("difficulty",mDifficulty);
                 mOurActivity.startActivity(mGameOverAct);
                 mOurActivity.finish();
-            }else if (msNewGame.remainingNumberOfMoves() == 0) {
+            }
+            if (msNewGame.remainingNumberOfMoves() == 0) {
                 msNewGame.startNextRound();
-                mintentRound.putExtra("nextRound", msNewGame.getRound());
                 mMoveNumber = 0;
+                mintentRound.putExtra("nextRound",msNewGame.getRound());
                 mOurActivity.startActivity(mintentRound);
+                mSmallCircleText.setText(mOurActivity.getString(R.string.round,msNewGame.getRound()));
             }
         }
     };
@@ -121,11 +132,19 @@ public class LesButtons {
         setAllButtonsUnclickable();
         int time = 0;
         for (int i = 0; i < msNewGame.getGameSequence().size(); i++) {
-            time += mDifficulty;
-            mhandler.postDelayed(flashButtonSequence(i),time);
-            time += mDifficulty/5;
-            mSimulationIteration = i;
-            mhandler.postDelayed(unFlashButtonSequence(i),time);
+            if(msNewGame.getRound() == 1){
+                time += 2000;
+                mhandler.postDelayed(flashButtonSequence(i),time);
+                time += 60;
+                mSimulationIteration = i;
+                mhandler.postDelayed(unFlashButtonSequence(i),time);
+            }else {
+                time += mDifficulty;
+                mhandler.postDelayed(flashButtonSequence(i), time);
+                time += mDifficulty / 5;
+                mSimulationIteration = i;
+                mhandler.postDelayed(unFlashButtonSequence(i), time);
+            }
         }
     }
 

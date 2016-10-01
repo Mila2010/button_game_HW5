@@ -47,12 +47,21 @@ public class HomeScreen extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.easy:
                     mintentHome.putExtra("difficulty",1000);
+                    mEasy.setBackgroundResource(R.color.green);
+                    mMedium.setBackgroundResource(R.color.red);
+                    mHard.setBackgroundResource(R.color.red);
                     break;
                 case R.id.medium:
                     mintentHome.putExtra("difficulty",850);
+                    mEasy.setBackgroundResource(R.color.red);
+                    mMedium.setBackgroundResource(R.color.green);
+                    mHard.setBackgroundResource(R.color.red);
                     break;
                 case R.id.hard:
                     mintentHome.putExtra("difficulty",700);
+                    mEasy.setBackgroundResource(R.color.red);
+                    mMedium.setBackgroundResource(R.color.red);
+                    mHard.setBackgroundResource(R.color.green);
                     break;
                 case R.id.start:
                     startActivity(mintentHome);

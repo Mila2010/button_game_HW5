@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.example.andresarango.memory_game_hw5.HomeScreen">
     <Button
         android:id="@+id/start"
@@ -19,24 +20,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
         <Button
             android:id="@+id/easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/red"
             android:text="EASY"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:layout_margin="10dp"/>
         <Button
             android:id="@+id/medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/red"
             android:text="MEDIUM"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:layout_margin="10dp"/>
         <Button
             android:id="@+id/hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/red"
             android:text="HARD"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:layout_margin="10dp"/>
     </LinearLayout>
 </LinearLayout>

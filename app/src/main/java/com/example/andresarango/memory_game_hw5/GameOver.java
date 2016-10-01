@@ -40,6 +40,7 @@ public class GameOver extends AppCompatActivity {
                     break;
                 case R.id.quit:
                     startActivity(home);
+                    mainAct.putExtra("difficulty",getIntent().getIntExtra("difficulty",1000));
                     finish();
             }
         }

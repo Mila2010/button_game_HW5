@@ -1,6 +1,5 @@
 package com.example.andresarango.memory_game_hw5;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
     private List<String> generateSequence;
     private List<String> userSequence;
     public SimonGame msNewGame;
-    private Intent mintentGameOver;
     private LesButtons magicButtons;
 
 
@@ -21,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        mintentGameOver = new Intent(MainActivity.this,GameOver.class);
 
         msNewGame = new SimonGame();
         msNewGame.addRandomColorToGameSequence();
