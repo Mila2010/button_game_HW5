@@ -20,11 +20,15 @@ public class LesButtons {
     final private Button mLowerLeftYellowBut;
     final private Button mLowerRightBlueBut;
     private int mSimulationIteration;
+    private int mDifficulty = 1000;
+    private int mMoveNumber;
     private Activity mOurActivity;
-    int mDifficulty = 1000;
-
-
     private Handler mhandler;
+
+    /*
+    * I set all the buttons to my fields in the constructor
+    * */
+
     public LesButtons(Activity currentActivity){
         mOurActivity = currentActivity;
         mDifficulty = mOurActivity.getIntent().getIntExtra("difficulty",1000);
@@ -41,39 +45,60 @@ public class LesButtons {
         mhandler= new Handler();
     }
 
+
+    /*
+    *
+    * When button is clicked, userMove is set in simongame, mMoveNumber is set in simongame,
+    * buttonwasclicked is set in simongame to true and button is flashed.
+    *
+    *
+    *
+    * */
+
     private View.OnClickListener clickedButton = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             int unflashDelayTime = mDifficulty/5;
+            if(mMoveNumber == msNewGame.getGameSequence().size()){
+                mMoveNumber = 0;
+            }
             switch (view.getId()){
                 case R.id.upper_left:
                     msNewGame.setUserMove(SimonColors.GREEN);
+                    msNewGame.setmMoveNumber(mMoveNumber);
                     flashButton(mUpperLeftGreenBut);
                     mhandler.postDelayed(delayUnflashButton(mUpperLeftGreenBut),unflashDelayTime);
                     break;
                 case R.id.upper_right:
                     msNewGame.setUserMove(SimonColors.RED);
+                    msNewGame.setmMoveNumber(mMoveNumber);
                     flashButton(mUpperRightRedBut);
                     mhandler.postDelayed(delayUnflashButton(mUpperRightRedBut),unflashDelayTime);
                     break;
                 case R.id.lower_left:
                     msNewGame.setUserMove(SimonColors.YELLOW);
+                    msNewGame.setmMoveNumber(mMoveNumber);
                     flashButton(mLowerLeftYellowBut);
                     mhandler.postDelayed(delayUnflashButton(mLowerLeftYellowBut),unflashDelayTime);
                     break;
                 case R.id.lower_right:
                     msNewGame.setUserMove(SimonColors.BLUE);
+                    msNewGame.setmMoveNumber(mMoveNumber);
                     flashButton(mLowerRightBlueBut);
                     mhandler.postDelayed(delayUnflashButton(mLowerRightBlueBut),unflashDelayTime);
                     break;
             }
+            mMoveNumber += 1;
+            msNewGame.setWasAButtonClicked(true);
         }
     };
+
+    /*This shows the button sequence user must match*/
 
     public void showButtonSequence(){
         setAllButtonsUnclickable();
         int time = 0;
-        for (int i = 0; i < msNewGame.gameMoveSequence.size(); i++) {
+        for (int i = 0; i < msNewGame.getGameSequence().size(); i++) {
             time = mDifficulty + time;
             mhandler.postDelayed(flashButtonSequence(i),time);
             time = mDifficulty/5 + time;
@@ -81,6 +106,8 @@ public class LesButtons {
             mhandler.postDelayed(unFlashButtonSequence(i),time);
         }
     }
+
+    /*Allows button to temporarily stay "flashed" when put in handler.postdelayed*/
 
     private Runnable delayUnflashButton(final Button ourbut){
         return new Runnable() {
@@ -104,6 +131,9 @@ public class LesButtons {
     }
 
 
+    /*method used specifically in showbutton sequence to unflash a button  according to sequence
+    * iteration*/
+
     private Runnable unFlashButtonSequence(final int iteration){
         return new Runnable() {
             @Override
@@ -124,12 +154,15 @@ public class LesButtons {
                     case GREEN:
                         unFlashButton(mUpperLeftGreenBut);
                 }
-                if(mSimulationIteration == msNewGame.gameMoveSequence.size() - 1){
+                if(mSimulationIteration == msNewGame.getGameSequence().size() - 1){
                     setAllButtonsClickable();
                 }
             }
         };
     }
+
+    /*method used specifically in showbutton sequence to flash a button according to sequence
+    * iteration*/
 
     private Runnable flashButtonSequence(final int iteration){
         return new Runnable() {
@@ -152,6 +185,8 @@ public class LesButtons {
             }
         };
     }
+
+    /*flash a button*/
 
     private void flashButton(final Button ourBut){
                 int colothis;
@@ -180,6 +215,8 @@ public class LesButtons {
     }
 
 
+    /*unflash a button*/
+
     private void unFlashButton(final Button ourBut){
                 int colothis;
                 GradientDrawable unflash;
@@ -206,7 +243,8 @@ public class LesButtons {
                 }
     }
 
-
+    /*Sets all buttons clickable. Used in showSequence allows users to press all buttons while
+    sequence is being played*/
     public void setAllButtonsClickable(){
         mUpperLeftGreenBut.setClickable(true);
         mUpperRightRedBut.setClickable(true);
@@ -214,6 +252,8 @@ public class LesButtons {
         mLowerRightBlueBut.setClickable(true);
     }
 
+    /*Sets all buttons unclickable. Used in showSequence to make sure users are not pressing buttons
+    * while game is being shown*/
     public void setAllButtonsUnclickable(){
         mUpperLeftGreenBut.setClickable(false);
         mUpperRightRedBut.setClickable(false);

@@ -13,6 +13,12 @@ public class HomeScreen extends AppCompatActivity {
     private Button mHard;
     private Intent mintent;
 
+    /*
+    * sets Homescreen, has buttons to change "difficulty" or speed that sequence is flashed, not
+    * very exciting stuff
+    *
+    * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +34,13 @@ public class HomeScreen extends AppCompatActivity {
         mMedium.setOnClickListener(clickedButton);
         mHard.setOnClickListener(clickedButton);
     }
+
+    /*
+    * set game difficulty and start game.
+    *
+    * Feel free to revise the homescreen, just be sure to change the Button ID's in this class and
+    * have the corresponding buttons in your new xml.
+    * */
 
     private View.OnClickListener clickedButton = new View.OnClickListener(){
         @Override

@@ -13,4 +13,6 @@
     <dimen name="button_width">140dp</dimen>
     <dimen name="inner_ring_thickness">20dp</dimen>
     <dimen name="stroke_width">15dp</dimen>
+    <dimen name="upper_text_height">60dp</dimen>
+    <dimen name="upper_text_width">80dp</dimen>
 </resources>

@@ -10,11 +10,13 @@ import java.util.Random;
  */
 
 public class SimonGame implements SequenceGameLogic {
-    public List<SimonColors> userMoveSequence = new ArrayList<>();
-    public List<SimonColors> gameMoveSequence = new ArrayList<>();
-    public SimonColors currentMove;
-    public int round;
-    public int score;
+    private List<SimonColors> userMoveSequence = new ArrayList<>();
+    private List<SimonColors> gameMoveSequence = new ArrayList<>();
+    private SimonColors currentMove;
+    private int round;
+    private int score;
+    private int mMoveNumber;
+    private boolean wasAButtonClicked;
 
 
     @Override
@@ -49,25 +51,42 @@ public class SimonGame implements SequenceGameLogic {
     }
 
 
-    @Override
-    public void addRandomColorToGameSequence() {
-        gameMoveSequence.add(getRandomColor());
+
+    public int getmMoveNumber() {return mMoveNumber;}
+
+    public List<SimonColors> getUserMoveSequence() {return userMoveSequence;}
+
+    public void setWasAButtonClicked(boolean wasAButtonClicked) {
+        this.wasAButtonClicked = wasAButtonClicked;
     }
+
+    @Override
+    public List<SimonColors> getGameSequence() {
+        return gameMoveSequence;
+    }
+
 
     @Override
     public void setUserMove(SimonColors move) {
         currentMove = move;
     }
 
-    @Override
-    public boolean isUserMoveCorrect(SimonColors move, int moveNumber) {
-        return gameMoveSequence.get(moveNumber).equals(move);
+    public void setmMoveNumber(int mMoveNumber) {this.mMoveNumber = mMoveNumber;}
+
+    public boolean WasAButtonClicked() {
+        return wasAButtonClicked;
     }
 
 
+
     @Override
-    public List<SimonColors> getGameSequence() {
-        return gameMoveSequence;
+    public void addRandomColorToGameSequence() {
+        gameMoveSequence.add(getRandomColor());
+    }
+
+    @Override
+    public boolean isUserMoveCorrect() {
+        return gameMoveSequence.get(mMoveNumber).equals(currentMove);
     }
 
     @Override
@@ -138,5 +157,11 @@ public class SimonGame implements SequenceGameLogic {
         }
         return null;
     }
+
+    @Override
+    public int remainingNumberOfMoves() {
+        return gameMoveSequence.size() - mMoveNumber;
+    }
+
 
 }
