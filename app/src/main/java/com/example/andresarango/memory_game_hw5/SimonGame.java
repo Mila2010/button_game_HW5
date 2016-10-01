@@ -11,7 +11,6 @@ import java.util.Random;
  */
 
 public class SimonGame implements SequenceGameLogic, Serializable {
-    private List<SimonColors> userMoveSequence = new ArrayList<>();
     private List<SimonColors> gameMoveSequence = new ArrayList<>();
     private SimonColors currentMove;
     private int round = 1;
@@ -54,22 +53,18 @@ public class SimonGame implements SequenceGameLogic, Serializable {
 
     public int getmMoveNumber() {return mMoveNumber;}
 
-    public List<SimonColors> getUserMoveSequence() {return userMoveSequence;}
 
     @Override
     public List<SimonColors> getGameSequence() {
         return gameMoveSequence;
     }
 
-
-    @Override
+    
     public void setUserMove(SimonColors move) {
         currentMove = move;
     }
 
     public void setmMoveNumber(int mMoveNumber) {this.mMoveNumber = mMoveNumber;}
-
-
 
     @Override
     public void addRandomColorToGameSequence() {
@@ -79,11 +74,6 @@ public class SimonGame implements SequenceGameLogic, Serializable {
     @Override
     public boolean isUserMoveCorrect() {
         return gameMoveSequence.get(mMoveNumber).equals(currentMove);
-    }
-
-    @Override
-    public void addToUserMoveHistory() {
-        userMoveSequence.add(currentMove);
     }
 
     @Override
@@ -113,41 +103,10 @@ public class SimonGame implements SequenceGameLogic, Serializable {
 
     @Override
     public void resetGame() {
-        userMoveSequence.clear();
         gameMoveSequence.clear();
         score = 0;
         round = 0;
         currentMove = null;
-    }
-
-    @Override
-    public String convertEnumColorToString(SimonColors color) {
-        switch(color){
-            case BLUE:
-                return "Blue";
-            case RED:
-                return "Red";
-            case GREEN:
-                return "Green";
-            case YELLOW:
-                return "Yellow";
-            default:
-                    return null;
-        }
-    }
-
-    @Override
-    public SimonColors convertStringToEnumColor(String move) {
-        if(move.equalsIgnoreCase("yellow")){
-            return SimonColors.YELLOW;
-        }else if(move.equalsIgnoreCase("red")){
-            return SimonColors.RED;
-        }else if(move.equalsIgnoreCase("blue")){
-            return SimonColors.BLUE;
-        }else if(move.equalsIgnoreCase("green")){
-            return SimonColors.GREEN;
-        }
-        return null;
     }
 
     @Override
