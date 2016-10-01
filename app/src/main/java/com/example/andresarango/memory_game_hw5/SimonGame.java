@@ -1,5 +1,6 @@
 package com.example.andresarango.memory_game_hw5;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,14 +10,13 @@ import java.util.Random;
  * Created by andresarango on 9/28/16.
  */
 
-public class SimonGame implements SequenceGameLogic {
+public class SimonGame implements SequenceGameLogic, Serializable {
     private List<SimonColors> userMoveSequence = new ArrayList<>();
     private List<SimonColors> gameMoveSequence = new ArrayList<>();
     private SimonColors currentMove;
-    private int round;
+    private int round = 1;
     private int score;
     private int mMoveNumber;
-    private boolean wasAButtonClicked;
 
 
     @Override
@@ -56,10 +56,6 @@ public class SimonGame implements SequenceGameLogic {
 
     public List<SimonColors> getUserMoveSequence() {return userMoveSequence;}
 
-    public void setWasAButtonClicked(boolean wasAButtonClicked) {
-        this.wasAButtonClicked = wasAButtonClicked;
-    }
-
     @Override
     public List<SimonColors> getGameSequence() {
         return gameMoveSequence;
@@ -72,10 +68,6 @@ public class SimonGame implements SequenceGameLogic {
     }
 
     public void setmMoveNumber(int mMoveNumber) {this.mMoveNumber = mMoveNumber;}
-
-    public boolean WasAButtonClicked() {
-        return wasAButtonClicked;
-    }
 
 
 
@@ -163,5 +155,10 @@ public class SimonGame implements SequenceGameLogic {
         return gameMoveSequence.size() - mMoveNumber - 1;
     }
 
-
+    @Override
+    public void startNextRound() {
+        addARound();
+        addRandomColorToGameSequence();
+        increaseScore();
+    }
 }

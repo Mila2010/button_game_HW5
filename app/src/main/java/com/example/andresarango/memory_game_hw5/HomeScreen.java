@@ -11,7 +11,7 @@ public class HomeScreen extends AppCompatActivity {
     private Button mEasy;
     private Button mMedium;
     private Button mHard;
-    private Intent mintent;
+    private Intent mintentHome;
 
     /*
     * sets Homescreen, has buttons to change "difficulty" or speed that sequence is flashed, not
@@ -27,8 +27,7 @@ public class HomeScreen extends AppCompatActivity {
         mEasy = (Button) findViewById(R.id.easy);
         mMedium = (Button) findViewById(R.id.medium);
         mHard = (Button) findViewById(R.id.hard);
-        mintent = new Intent(HomeScreen.this,MainActivity.class);
-
+        mintentHome = new Intent(HomeScreen.this,MainActivity.class);
         mStart.setOnClickListener(clickedButton);
         mEasy.setOnClickListener(clickedButton);
         mMedium.setOnClickListener(clickedButton);
@@ -47,16 +46,17 @@ public class HomeScreen extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.easy:
-                    mintent.putExtra("difficulty",1000);
+                    mintentHome.putExtra("difficulty",1000);
                     break;
                 case R.id.medium:
-                    mintent.putExtra("difficulty",850);
+                    mintentHome.putExtra("difficulty",850);
                     break;
                 case R.id.hard:
-                    mintent.putExtra("difficulty",700);
+                    mintentHome.putExtra("difficulty",700);
                     break;
                 case R.id.start:
-                    startActivity(mintent);
+                    startActivity(mintentHome);
+                    finish();
             }
         }
     };

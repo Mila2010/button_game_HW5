@@ -10,9 +10,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.andresarango.memory_game_hw5.GameOver">
     <TextView
+        android:id="@+id/game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="GAME OVER"
         android:textSize="50sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/game_over"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/new_game"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="New Game"/>
+        <Button
+            android:id="@+id/quit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Quit"/>
+    </LinearLayout>
 </RelativeLayout>

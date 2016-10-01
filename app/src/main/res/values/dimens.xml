@@ -15,4 +15,6 @@
     <dimen name="stroke_width">15dp</dimen>
     <dimen name="upper_text_height">60dp</dimen>
     <dimen name="upper_text_width">80dp</dimen>
+    <dimen name="big_text">50sp</dimen>
+    <dimen name="medium_text">30sp</dimen>
 </resources>

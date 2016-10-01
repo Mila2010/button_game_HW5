@@ -1,13 +1,14 @@
 package com.example.andresarango.memory_game_hw5;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 
-import static com.example.andresarango.memory_game_hw5.MainActivity.msNewGame;
+//import static com.example.andresarango.memory_game_hw5.MainActivity.msNewGame;
 
 /**
  * Created by andresarango on 9/30/16.
@@ -19,19 +20,33 @@ public class LesButtons {
     final private Button mUpperRightRedBut;
     final private Button mLowerLeftYellowBut;
     final private Button mLowerRightBlueBut;
+
     private int mSimulationIteration;
     private int mDifficulty = 1000;
     private int mMoveNumber;
+
     private Activity mOurActivity;
+    private Intent mintentRound;
+    private Intent mGameOverAct;
+
     private Handler mhandler;
+    private SimonGame msNewGame;
 
     /*
     * I set all the buttons to my fields in the constructor
     * */
 
-    public LesButtons(Activity currentActivity){
+    public LesButtons(Activity currentActivity, SimonGame thisGame){
         mOurActivity = currentActivity;
+
+        mintentRound = new Intent(mOurActivity,BetweenRoundsActivity.class);
+        msNewGame = thisGame;
+
+        mGameOverAct = new Intent(mOurActivity,GameOver.class);
+
         mDifficulty = mOurActivity.getIntent().getIntExtra("difficulty",1000);
+        mOurActivity.getIntent();
+
         mUpperLeftGreenBut = (Button) mOurActivity.findViewById(R.id.upper_left);
         mUpperRightRedBut = (Button) mOurActivity.findViewById(R.id.upper_right);
         mLowerLeftYellowBut = (Button) mOurActivity.findViewById(R.id.lower_left);
@@ -59,9 +74,6 @@ public class LesButtons {
         @Override
         public void onClick(View view) {
             int unflashDelayTime = mDifficulty/5;
-            if(mMoveNumber == msNewGame.getGameSequence().size()){
-                mMoveNumber = 0;
-            }
             switch (view.getId()){
                 case R.id.upper_left:
                     msNewGame.setUserMove(SimonColors.GREEN);
@@ -89,7 +101,17 @@ public class LesButtons {
                     break;
             }
             mMoveNumber += 1;
-            msNewGame.setWasAButtonClicked(true);
+
+            if(!msNewGame.isUserMoveCorrect()){
+                msNewGame.resetGame();
+                mOurActivity.startActivity(mGameOverAct);
+                mOurActivity.finish();
+            }else if (msNewGame.remainingNumberOfMoves() == 0) {
+                msNewGame.startNextRound();
+                mintentRound.putExtra("nextRound", msNewGame.getRound());
+                mMoveNumber = 0;
+                mOurActivity.startActivity(mintentRound);
+            }
         }
     };
 
@@ -99,9 +121,9 @@ public class LesButtons {
         setAllButtonsUnclickable();
         int time = 0;
         for (int i = 0; i < msNewGame.getGameSequence().size(); i++) {
-            time = mDifficulty + time;
+            time += mDifficulty;
             mhandler.postDelayed(flashButtonSequence(i),time);
-            time = mDifficulty/5 + time;
+            time += mDifficulty/5;
             mSimulationIteration = i;
             mhandler.postDelayed(unFlashButtonSequence(i),time);
         }

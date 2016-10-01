@@ -22,12 +22,11 @@ public interface SequenceGameLogic {
     public int getScore();
     public int getmMoveNumber();
     public List<SimonColors> getUserMoveSequence();
-    public void setWasAButtonClicked(boolean wasAButtonClicked);
     public void setmMoveNumber(int mMoveNumber);
-    public boolean WasAButtonClicked();
     public void increaseScore();
     public void resetGame();
     public String convertEnumColorToString(SimonColors color);
     public SimonColors convertStringToEnumColor(String move);
     public int remainingNumberOfMoves();
+    public void startNextRound();
 }
