@@ -160,7 +160,7 @@ public class SimonGame implements SequenceGameLogic {
 
     @Override
     public int remainingNumberOfMoves() {
-        return gameMoveSequence.size() - mMoveNumber;
+        return gameMoveSequence.size() - mMoveNumber - 1;
     }
 
 
