@@ -51,7 +51,7 @@ public class LesButtons {
     * When button is clicked, userMove is set in simongame, mMoveNumber is set in simongame,
     * buttonwasclicked is set in simongame to true and button is flashed.
     *
-    *
+    
     *
     * */
 
