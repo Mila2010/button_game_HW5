@@ -1,19 +1,23 @@
 package com.example.andresarango.memory_game_hw5;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 public class BetweenRoundsActivity extends AppCompatActivity {
 
+    private static final String ROUND ="ROUND" ;
+    private static final String SCORE = "SCORE";
+    private static final String GAMESEQUENCE = "GAMESEQUENCE";
     private Intent mintent;
     private Intent mintentMain;
     private TextView mRoundCount;
     private TextView mRoundCountdown;
     private Handler mHandler;
     private int countdownTime = 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,4 +64,20 @@ public class BetweenRoundsActivity extends AppCompatActivity {
             }
         };
     };
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = settings.edit();
+//        editor.putInt(ROUND,  msNewGame.getRound());
+//        editor.putInt(SCORE, msNewGame.getScore());
+//        Set<String> set = new HashSet<String>();
+//        set.addAll(msNewGame.convertToString(msNewGame.getGameSequence()));
+//
+//        editor.putStringSet(GAMESEQUENCE,set);
+//        editor.apply();
+//        editor.commit();
+//
+//    }
 }

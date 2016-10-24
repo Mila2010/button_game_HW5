@@ -1,9 +1,20 @@
 package com.example.andresarango.memory_game_hw5;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+
+import static android.content.ContentValues.TAG;
+import static com.example.andresarango.memory_game_hw5.SimonColors.BLUE;
+import static com.example.andresarango.memory_game_hw5.SimonColors.GREEN;
+import static com.example.andresarango.memory_game_hw5.SimonColors.RED;
+import static com.example.andresarango.memory_game_hw5.SimonColors.YELLOW;
 
 
 /**
@@ -17,19 +28,24 @@ public class SimonGame implements SequenceGameLogic, Serializable {
     private int score;
     private int mMoveNumber;
 
+//    public SimonGame(List<SimonColors> gameMoveSequence){
+//
+//        this.gameMoveSequence.addAll(gameMoveSequence);
+//
+//    }
 
     @Override
     public SimonColors getRandomColor() {
         int randNumber = getRandomNumber(4,1);
         switch(randNumber){
             case 1:
-                return SimonColors.RED;
+                return RED;
             case 2:
-                return SimonColors.BLUE;
+                return BLUE;
             case 3:
-                return SimonColors.GREEN;
+                return GREEN;
             case 4:
-                return SimonColors.YELLOW;
+                return YELLOW;
             default:
                 return null;
         }
@@ -59,9 +75,83 @@ public class SimonGame implements SequenceGameLogic, Serializable {
         return gameMoveSequence;
     }
 
+    public void setGameSequence(List<SimonColors> gameMoveSequence) {
+         this.gameMoveSequence.addAll(gameMoveSequence);
+    }
     
     public void setUserMove(SimonColors move) {
         currentMove = move;
+    }
+    public SimonColors getUserMove() {
+        return currentMove;
+    }
+
+    public Set<String> convertToString(List<SimonColors> list){
+        Set<String> output = new HashSet<>();
+        for(SimonColors color:list){
+
+            switch (color){
+
+                case YELLOW:
+                    output.add("yellow");
+                    break;
+                case RED:
+                    output.add("red");
+                    break;
+                case BLUE:
+                    output.add("blue");
+                    break;
+                case GREEN:
+                    output.add("green");
+                    break;
+
+            }
+
+        }
+        for(String color:output){
+
+            Log.d("MthodToCOnvert",color);
+
+        }
+     return output;
+
+    }
+
+    public void convertToSColors(Set<String> set){
+
+        //List<SimonColors> output = new ArrayList<>();
+
+        //gameMoveSequence.clear();
+
+
+
+        for(String color:set){
+
+            switch (color){
+
+                case "yellow":
+                    gameMoveSequence.add(YELLOW);
+                    break;
+                case "red":
+                    gameMoveSequence.add(RED);
+                    break;
+                case "blue":
+                    gameMoveSequence.add(BLUE);
+                    break;
+                case "green":
+                    gameMoveSequence.add(GREEN);
+                    break;
+
+            }
+
+        }
+        Collections.reverse(gameMoveSequence);
+        for(SimonColors color:gameMoveSequence){
+
+            Log.d("FinalVersion",color.toString());
+
+        }
+
     }
 
     public void setmMoveNumber(int mMoveNumber) {this.mMoveNumber = mMoveNumber;}
@@ -69,6 +159,11 @@ public class SimonGame implements SequenceGameLogic, Serializable {
     @Override
     public void addRandomColorToGameSequence() {
         gameMoveSequence.add(getRandomColor());
+        for(SimonColors color:gameMoveSequence){
+
+            Log.d(TAG,color.toString());
+
+        }
     }
 
     @Override
@@ -84,6 +179,14 @@ public class SimonGame implements SequenceGameLogic, Serializable {
     @Override
     public void addARound() {
         round +=1;
+    }
+
+
+    public void setRound(int round){
+       this.round=round;
+    }
+    public void setScore(int score){
+        this.score=score;
     }
 
     @Override

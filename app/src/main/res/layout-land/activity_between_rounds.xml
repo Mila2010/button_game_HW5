@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_between_rounds"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.andresarango.memory_game_hw5.BetweenRoundsActivity">
+    <TextView
+        android:id="@+id/congratule_for_round_win"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="@string/celebrate_round_completion"
+        android:textSize="@dimen/big_text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="@string/indicate_new_round"
+        android:textSize="@dimen/medium_text"/>
+    <TextView
+        android:id="@+id/round_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/big_text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/introduce_time_until_next_round"
+        android:textSize="@dimen/medium_text"/>
+    <TextView
+        android:id="@+id/round_countdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/big_text"/>
+
+</LinearLayout>
